@@ -40,7 +40,7 @@ var url = "mongodb://localhost:27017/";
 // const randomEpic = Math.floor(Math.random() * (9 - 1 + 1) + 1)
 
 
-function randomEpicFunc(1 , 9) { // min and max included 
+function randomEpicFunc(min , max) { // min and max included 
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
@@ -69,19 +69,24 @@ app.get('/login', (req, res) => {
 app.get('/game', (req, res) => {
   // res.sendFile('./client/proj.html')
   res.sendFile(path.join(__dirname, '../client/game/game.html'));
+  randomEpic = randomEpicFunc(1,9)
+  // socket.emit('epic', epics[randomEpic]);
 
 })
 
 io.on('connection', (socket) => {
   console.log('a user connected');
-  socket.on('epic', msg => {
-    randomEpic = randomEpicFunc()
-    io.emit('epic', randomEpic);
+  socket.on('changeEpic', msg => {
+    randomEpic = randomEpicFunc(1,9)
+    socket.emit('epic', epics[randomEpic]);
   });
   socket.on('check game', msg => {
     console.log(msg)
+    randomEpic = randomEpicFunc(1,9)
+    console.log(epics[randomEpic])
     // let s = findUser();
-    chekImg(epics[randomEpic],msg)
+    chekImg(epics[9],msg)
+    // socket.emit('epic', "dsdsd");
   //  console.log("sasas " +  epics[randomEpic])
     // chekImg("yes",[{"check":true,"epic":"fa"},{"check":true,"epic":"no"},{"check":false,"epic":"yes"},{"check":true,"epic":"yes"}])
     // console.log(msg)
@@ -94,8 +99,9 @@ io.on('connection', (socket) => {
   });
   socket.on('find user',msg=>{
     console.log("sasa")
-    randomEpic = randomEpicFunc()
-    socket.emit("move",randomEpic)
+    randomEpic = randomEpicFunc(1,9)
+    // socket.emit("game","sasd")
+    socket.emit("move",epics[randomEpic])
     // app.get('/', (req, res) => {
       // res.sendFile('./client/proj.html')
 
@@ -146,7 +152,7 @@ function addToUser (sum1){
 MongoClient.connect(url, function(err, db) {
   if (err) throw err;
   var dbo = db.db("mydb");
-  var myquery = { name: "Company Inc" };
+  var myquery = { userName: "demo@devias.io" };
   var newvalues = { $set: {sum: sum1} };
   dbo.collection("customers").updateOne(myquery, newvalues, function(err, res) {
     if (err) throw err;

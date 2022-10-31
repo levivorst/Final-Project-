@@ -37,8 +37,10 @@
 
     <main>
       <div class="container text-center">
-        <H1 id="epic">בחר את התמונה שמייצגת את יום כיפור</H1>
+        <H1>:בחר את התמונה שמייצגת את </H1>
+        <H1 id="epic"></H1>
       </div>
+
 
       <div class="board-container">
 
@@ -50,92 +52,13 @@
 
       </div>
 
-      <!-- <table class="table table-dark">
-                        <thead>
-                          <tr>
-                            <th>
-                            <img src="img_girl.jpg" alt="Girl in a jacket" width="500" height="600">
-                        </th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">3</th>
-                            <td colspan="2">Larry the Bird</td>
-                            <td>@twitter</td>
-                          </tr>
-                        </tbody>
-                      </table> -->
-
-      <!-- <table class="table"> -->
-      <!-- table-dark table-borderless"> -->
-      <!-- <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                <label class="form-check-label" for="flexCheckDefault">
-                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyE36ZGFUFoBqGhJdVUQHxxecUrLwP88u2Fw&usqp=CAU" alt="Girl in a jacket" width="500" height="600">
-                </label>
-              </div>
-            </td>
-            <td>
-              <input type="checkbox" id="myCheckbox1" />
-              <label for="myCheckbox1"><img
-                  src="data:image/png;base64,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" /></label>
-            </td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
-        </tbody>
-      </table> -->
+    
 
 
       <form>
         <table class="table">
 
-          <!-- <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-          </tr>
-        </thead> -->
+        
           <tbody>
             <tr>
               <td>
@@ -239,8 +162,12 @@
         </div> -->
         <div class="form-group row">
           <div class="col-sm-12">
+            <div id="4">
             <button type="submit" class="btn btn-primary">בדיקה</button>
+          </div>
+          <div id="5">
             <button type="submit1" class="btn btn-secondary">משחק חדש</button>
+            </div>
           </div>
         </div>
       </form>
@@ -260,7 +187,7 @@
 
   </div>
 
-  <script type="text/javascript" src="games.js"></script>
+  <!-- <script type="text/javascript" src="games.js"></script> -->
 
   <script src="/socket.io/socket.io.js"></script>
   <script>
@@ -277,18 +204,34 @@
     let img8 = document.getElementById('img8');
     let img9 = document.getElementById('img9');
 
-
-    document.addEventListener('submit', function (e) {
+    let checkGame= document.getElementById('4')
+    checkGame.addEventListener('submit', function (e) {
       e.preventDefault();
       // if (input.value) {
       socket.emit('check game', { 1: img1.checked, 2: img2.checked, 3: img3.checked, 4: img4.checked, 5: img5.checked, 6: img6.checked, 7: img7.checked, 8: img8.checked, 9: img9.checked });
       // input.value = '';
       // }
     });
-    socket.on('game',msg=>{
-      document.getElementById('epic').replaceChildren
+
+    socket.on('epic',msg=>{
+      // document.getElementById('epic').innerText = "sjaksjak"
+      console.log(msg)
+      // $('#epic').after($('<h1>').text(msg));
+      //   $('#epic').val('dada');
+        $('#epic').html($('<h1>').text(msg));
+      // document.getElementById('epic').innerHTML = document.getElementById('epic').innerHTML.replace('>בחר את התמונה שמייצגת את יום כיפור', 'hi');
 
     })
+
+
+    let craereGame= document.getElementById('5')
+    craereGame.addEventListener('click', function(e) {
+        e.preventDefault();
+          socket.emit('changeEpic',"");
+      }
+    );
+
+    
 
   </script>
 </body>
