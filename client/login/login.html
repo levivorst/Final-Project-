@@ -71,35 +71,20 @@
 
     let craere = document.getElementById('2')
     craere.addEventListener('click', function (e) {
-      // console.log(e)
-      // if (){
+     
       e.preventDefault();
-      // if (input.value) {
-      // console.log(e.id)
+    
       socket.emit('craete user', { user: userName.value, password: password.value });
-      // input.value = '';
-      // }
-      // }
-      // else{
-
-      // }
+     
     }
     );
 
     let find = document.getElementById('1')
     find.addEventListener('click', function (e) {
-      // console.log(e)
-      // if (){
+      
       e.preventDefault();
-      // if (input.value) {
-      // console.log(e.id)
+      
       socket.emit('find user', { user: userName.value, password: password.value });
-      // input.value = '';
-      // }
-      // }
-      // else{
-
-      // }
     }
     );
 
@@ -108,24 +93,9 @@
 
     })
 
-    // io.emit('chat message', userName.value + "  " + password.value);
-    // console.log(userName.value + "  " + password.value)
-
+    
 
   </script>
-  <!-- <script type="importmap">
-    {
-      "imports": {
-        "socket.io-client": "https://cdn.socket.io/4.4.1/socket.io.esm.min.js"
-      }
-    }
-  </script>
-  
-  <script type="module">
-    import { io } from "socket.io-client";
-  
-    const socket = io();
-  </script> -->
 
 </body>
 
