@@ -31,7 +31,7 @@ function randomEpicFunc(min , max) { // min and max included
 
 app.get('/', (req, res) => {
   
-  res.sendFile(path.join(__dirname, 'login.html'));
+  res.sendFile(path.join(__dirname, '../client/login/login.html'));
 
 })
 
@@ -41,7 +41,7 @@ app.get('/*js', (req, res) => {
 })
 
 app.get('/login', (req, res) => {
-  res.sendFile(path.join(__dirname, '/login.html'));
+  res.sendFile(path.join(__dirname, '../client/login/login.html'));
 
 })
 
