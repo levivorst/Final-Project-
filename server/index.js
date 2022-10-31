@@ -1,16 +1,6 @@
-// const express = require('express');
-// const app = express();
-// const http = require('http');
-// const server = http.createServer(app);
-// const { Server } = require("socket.io");
-// const io = require('socket.io')(http);
-// const path = require('path');
-// var mongo = require('mongodb');
 const express = require("express");
 
 const app = express();
-// app.use("/styles", express.static(__dirname + '/styles'));
-// const app = require('express')();
 app.use('/js', express.static(__dirname + '../public/js'));
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
@@ -20,9 +10,6 @@ const mongo = require('mongodb');
 
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/";
-// app.use(express.static(path.join(__dirname, "js")))
-
-// const port = 3000;
 
 
  let epics =
@@ -37,61 +24,44 @@ var url = "mongodb://localhost:27017/";
   "יום כיפור",
 ]
 
-// const randomEpic = Math.floor(Math.random() * (9 - 1 + 1) + 1)
-
 
 function randomEpicFunc(min , max) { // min and max included 
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
 app.get('/', (req, res) => {
-  // res.sendFile('./client/proj.html')
-  // app.use('/static', express.static(__dirname + '/../client/game'));
-  // res.sendFile("login.html",{ root: '/' });
+  
   res.sendFile(path.join(__dirname, 'login.html'));
 
 })
 
 app.get('/*js', (req, res) => {
-  // res.sendFile('./client/proj.html')
-  // app.use('/static', express.static(__dirname + '/../client/game'));
   res.sendFile("client/game/game.html",{ root: '../' });
-  // res.sendFile(path.join(__dirname, '../client/game/'));
 
 })
 
 app.get('/login', (req, res) => {
-  // res.sendFile('./client/proj.html')
   res.sendFile(path.join(__dirname, '/login.html'));
 
 })
 
 app.get('/game', (req, res) => {
-  // res.sendFile('./client/proj.html')
   res.sendFile(path.join(__dirname, '../client/game/game.html'));
-  randomEpic = randomEpicFunc(1,9)
-  // socket.emit('epic', epics[randomEpic]);
 
 })
 
 io.on('connection', (socket) => {
   console.log('a user connected');
-  socket.on('changeEpic', msg => {
-    randomEpic = randomEpicFunc(1,9)
-    socket.emit('epic', epics[randomEpic]);
-  });
-  socket.on('check game', msg => {
-    console.log(msg)
-    randomEpic = randomEpicFunc(1,9)
-    console.log(epics[randomEpic])
-    // let s = findUser();
-    chekImg(epics[9],msg)
-    // socket.emit('epic', "dsdsd");
-  //  console.log("sasas " +  epics[randomEpic])
-    // chekImg("yes",[{"check":true,"epic":"fa"},{"check":true,"epic":"no"},{"check":false,"epic":"yes"},{"check":true,"epic":"yes"}])
-    // console.log(msg)
-    // io.emit('chat message', msg);
-  });
+
+    socket.on('changeEpic', msg => {
+      randomEpic = randomEpicFunc(1,9)
+      socket.emit('epic', epics[randomEpic]);
+    });
+
+    socket.on('check game', msg => {
+      console.log(epics[randomEpic])
+      chekImg(epics[randomEpic],msg)
+    });
 
   socket.on('craete user', msg => {
     craeteUser(msg.user,msg.password)
@@ -100,17 +70,8 @@ io.on('connection', (socket) => {
   socket.on('find user',msg=>{
     console.log("sasa")
     randomEpic = randomEpicFunc(1,9)
-    // socket.emit("game","sasd")
     socket.emit("move",epics[randomEpic])
-    // app.get('/', (req, res) => {
-      // res.sendFile('./client/proj.html')
-
-      // io.socket.get('../client/game/game.html')
-      // io.sendFile(path.join(__dirname, '../client/game/game.html'));
     
-    // })
-    // user =await findUser(msg.user,msg.password)
-    // await console.log(user.userName)
   })
 
 });
@@ -144,17 +105,12 @@ async function chekImg(epic,imges){
 
 function addToUser (sum1){
 
-  // console.log("sum1 = "+ sum1)
-// var MongoClient = require('mongodb').MongoClient;
-// var url = "mongodb://127.0.0.1:27017/";
-
-
 MongoClient.connect(url, function(err, db) {
   if (err) throw err;
   var dbo = db.db("mydb");
   var myquery = { userName: "demo@devias.io" };
   var newvalues = { $set: {sum: sum1} };
-  dbo.collection("customers").updateOne(myquery, newvalues, function(err, res) {
+  dbo.collection("users").updateOne(myquery, newvalues, function(err, res) {
     if (err) throw err;
     console.log("1 document updated");
     db.close();

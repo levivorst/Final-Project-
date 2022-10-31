@@ -38,7 +38,7 @@
     <main>
       <div class="container text-center">
         <H1>:בחר את התמונה שמייצגת את </H1>
-        <H1 id="epic"></H1>
+        <H1 id="epic">סוכות</H1>
       </div>
 
 
@@ -205,7 +205,7 @@
     let img9 = document.getElementById('img9');
 
     let checkGame= document.getElementById('4')
-    checkGame.addEventListener('submit', function (e) {
+    checkGame.addEventListener('click', function (e) {
       e.preventDefault();
       // if (input.value) {
       socket.emit('check game', { 1: img1.checked, 2: img2.checked, 3: img3.checked, 4: img4.checked, 5: img5.checked, 6: img6.checked, 7: img7.checked, 8: img8.checked, 9: img9.checked });
